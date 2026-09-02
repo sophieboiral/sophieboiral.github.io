@@ -297,11 +297,18 @@ textarea { min-height: 116px; resize: vertical; }
 input:focus, textarea:focus { border-color: var(--turquoise); background: white; }
 .submit-row {
   display: grid;
-  grid-template-columns: minmax(235px, 0.42fr) minmax(0, 0.58fr);
+  grid-template-columns: minmax(260px, 0.48fr) minmax(0, 0.52fr);
   align-items: center;
   gap: 1.25rem;
   margin-top: 0.5rem;
 }
+.send-actions { display: grid; gap: 0.65rem; }
+.secondary-button {
+  border: 1px solid var(--deep) !important;
+  background: transparent !important;
+  color: var(--deep) !important;
+}
+.secondary-button:hover { background: rgba(15, 77, 78, 0.08) !important; }
 .submit-row p { margin: 0; color: var(--muted); font-size: 0.75rem; line-height: 1.55; }
 .form-error { margin: 0; color: #9d332d; font-size: 0.84rem; }
 .sent-message {
@@ -630,10 +637,15 @@ footer .breath-mark { margin: 0; color: var(--deep); }
             <p class="form-error" id="form-error" role="alert" hidden></p>
 
             <div class="submit-row">
-              <button class="submit-button" type="submit">
-                Envoyer ma demande <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
-              </button>
-              <p>Votre messagerie s’ouvrira avec la demande préremplie. Aucune donnée n’est enregistrée sur ce site.</p>
+              <div class="send-actions">
+                <button class="submit-button" type="submit" data-send-mode="gmail">
+                  Envoyer avec Gmail <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
+                </button>
+                <button class="submit-button secondary-button" type="submit" data-send-mode="mailto">
+                  Outlook ou autre messagerie <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
+                </button>
+              </div>
+              <p>Choisissez votre messagerie. Un email prérempli s’ouvrira ; il vous restera simplement à cliquer sur « Envoyer ». Gmail s’ouvre dans le même onglet pour éviter le blocage des fenêtres. Aucune donnée n’est enregistrée sur ce site.</p>
             </div>
           </form>
 
@@ -737,6 +749,8 @@ document.querySelectorAll(".choose-button").forEach((button) => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
+  const sendMode = event.submitter?.dataset.sendMode || "gmail";
+
   const data = new FormData(form);
   const name = String(data.get("name") || "").trim();
   const email = String(data.get("email") || "").trim();
@@ -777,7 +791,15 @@ form.addEventListener("submit", (event) => {
   if (message) lines.push("", "Ma demande :", message);
   lines.push("", "Bien cordialement,", name);
 
-  window.location.href = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+  const encodedSubject = encodeURIComponent(subject);
+  const encodedBody = encodeURIComponent(lines.join("\n"));
+
+  if (sendMode === "gmail") {
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(RECIPIENT_EMAIL)}&su=${encodedSubject}&body=${encodedBody}`;
+    window.location.href = gmailUrl;
+  } else {
+    window.location.href = `mailto:${RECIPIENT_EMAIL}?subject=${encodedSubject}&body=${encodedBody}`;
+  }
 });
 
     </script>
