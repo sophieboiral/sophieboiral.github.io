@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Échanger autour d’une œuvre, imaginer un projet ou rencontrer Sophie Boiral dans son atelier à Saint-Ouen-sur-Seine."
+    />
+    <meta name="theme-color" content="#f7f5f0" />
+    <title>Prenons le temps d’échanger | Sophie Boiral</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="icon-arrow-down" viewBox="0 0 24 24">
+        <path d="M12 5v14M19 12l-7 7-7-7" />
+      </symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </symbol>
+      <symbol id="icon-video" viewBox="0 0 24 24">
+        <rect x="3" y="6" width="13" height="12" rx="2" />
+        <path d="m16 10 5-3v10l-5-3" />
+      </symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m4 7 8 6 8-6" />
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+    </svg>
+
+    <header class="topbar">
+      <a href="#accueil" class="brand" aria-label="Sophie Boiral — accueil">
+        <img src="assets/signature-sophie.png" alt="Sophie Boiral" />
+        <span>Artiste plasticienne</span>
+      </a>
+      <a href="#rendez-vous" class="top-link">
+        Choisir un rendez-vous
+        <svg aria-hidden="true"><use href="#icon-arrow-down"></use></svg>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" id="accueil">
+        <div class="hero-copy">
+          <p class="eyebrow">Sophie Boiral · Saint-Ouen-sur-Seine</p>
+          <h1>Prenons le temps<br />d’échanger</h1>
+          <p class="intro">
+            Une œuvre vous interpelle, vous souhaitez imaginer une collaboration,
+            une exposition ou simplement en savoir davantage sur mon travail ?
+          </p>
+          <p class="intro secondary">
+            Je vous propose un temps d’échange pour découvrir votre projet,
+            répondre à vos questions et imaginer ensemble la suite.
+          </p>
+          <div class="brand-phrase">
+            <span>Le souffle révèle des mondes invisibles</span>
+            <svg class="breath-mark" viewBox="0 0 420 88" role="img" aria-label="Motif graphique évoquant le souffle">
+              <path d="M8 52c58-28 95-30 142-3 50 29 96 26 142-6 43-30 78-31 120-8" />
+              <path d="M20 62c50-22 90-20 129 2 53 29 100 23 145-8 40-28 73-27 108-7" />
+              <g>
+                <circle cx="28" cy="24" r="2.5" /><circle cx="75" cy="16" r="4" />
+                <circle cx="120" cy="29" r="2" /><circle cx="173" cy="14" r="3" />
+                <circle cx="230" cy="28" r="5" /><circle cx="283" cy="16" r="2.5" />
+                <circle cx="335" cy="28" r="3.5" /><circle cx="389" cy="12" r="2" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero-gallery" aria-label="Œuvres et gestes de Sophie Boiral">
+          <figure class="gallery-main">
+            <img src="assets/aquarelle-geste.JPG" alt="Encre et aquarelle bleue et verte travaillée à la main" />
+          </figure>
+          <figure>
+            <img src="assets/encre-verre.JPG" alt="Encre turquoise se diffusant dans un verre d’eau" />
+          </figure>
+          <figure>
+            <img src="assets/oeuvres-main.JPG" alt="Œuvres originales aux encres bleues tenues à la main" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="appointments-section" id="rendez-vous">
+        <div class="section-heading">
+          <p class="eyebrow">Trois façons de se rencontrer</p>
+          <h2>Choisissez votre rendez-vous</h2>
+          <p>Le premier échange est libre et sans engagement.</p>
+        </div>
+
+        <div class="appointments-grid">
+          <article class="appointment-card">
+            <div class="card-image">
+              <img src="assets/encre-verre.JPG" alt="" style="object-position: 50% 42%" />
+              <span>01</span>
+            </div>
+            <div class="card-content">
+              <h3>Échanger autour d’une œuvre</h3>
+              <div class="card-meta">
+                <span><svg aria-hidden="true"><use href="#icon-clock"></use></svg>20 minutes</span>
+                <span><svg aria-hidden="true"><use href="#icon-video"></use></svg>Téléphone ou visioconférence</span>
+              </div>
+              <p>Une œuvre vous intéresse ? Parlons ensemble d’une série, d’un format, d’une technique ou d’une acquisition.</p>
+              <button type="button" class="choose-button" data-appointment="oeuvre">
+                Choisir ce rendez-vous <svg aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="appointment-card">
+            <div class="card-image">
+              <img src="assets/aquarelle-geste.JPG" alt="" style="object-position: 48% 52%" />
+              <span>02</span>
+            </div>
+            <div class="card-content">
+              <h3>Imaginons un projet ensemble</h3>
+              <div class="card-meta">
+                <span><svg aria-hidden="true"><use href="#icon-clock"></use></svg>30 minutes</span>
+                <span><svg aria-hidden="true"><use href="#icon-video"></use></svg>Visioconférence</span>
+              </div>
+              <p>Exposition, commande ou collaboration : un premier temps pour découvrir votre projet et imaginer la suite.</p>
+              <button type="button" class="choose-button" data-appointment="projet">
+                Choisir ce rendez-vous <svg aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="appointment-card">
+            <div class="card-image">
+              <img src="assets/oeuvres-bleues.jpg" alt="" style="object-position: 52% 45%" />
+              <span>03</span>
+            </div>
+            <div class="card-content">
+              <h3>Rencontre à l’atelier</h3>
+              <div class="card-meta">
+                <span><svg aria-hidden="true"><use href="#icon-clock"></use></svg>45 minutes</span>
+                <span><svg aria-hidden="true"><use href="#icon-pin"></use></svg>Saint-Ouen-sur-Seine</span>
+              </div>
+              <p>Je vous accueille à l’atelier pour découvrir les œuvres, les matières et mon univers au plus près.</p>
+              <button type="button" class="choose-button" data-appointment="atelier">
+                Choisir ce rendez-vous <svg aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="request-section" id="demande">
+        <div class="request-art" aria-hidden="true">
+          <img src="assets/oeuvre-encre-noire.JPG" alt="" />
+          <div class="art-caption">Encre de Chine · souffle &amp; dessin</div>
+        </div>
+
+        <div class="request-form-wrap">
+          <p class="eyebrow">Votre choix · <span id="appointment-number">01</span></p>
+          <h2 id="appointment-title">Échanger autour d’une œuvre</h2>
+          <p class="form-lead">
+            Proposez le créneau qui vous convient. Sophie vous répondra personnellement pour le confirmer.
+          </p>
+
+          <form id="appointment-form" novalidate>
+            <div class="field-row">
+              <label>
+                Votre nom <span>*</span>
+                <input name="name" type="text" autocomplete="name" placeholder="Prénom et nom" required />
+              </label>
+              <label>
+                Votre email <span>*</span>
+                <input name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required />
+              </label>
+            </div>
+            <div class="field-row three">
+              <label>
+                Date souhaitée <span>*</span>
+                <input id="appointment-date" name="date" type="date" required />
+              </label>
+              <label>
+                Heure souhaitée <span>*</span>
+                <input name="time" type="time" required />
+              </label>
+              <label>
+                Téléphone
+                <input name="phone" type="tel" autocomplete="tel" placeholder="06 00 00 00 00" />
+              </label>
+            </div>
+            <label>
+              Parlez-moi de votre demande
+              <textarea name="message" rows="4" placeholder="Une œuvre, une idée d’exposition, une collaboration…"></textarea>
+            </label>
+
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+
+            <div class="submit-row">
+              <button class="submit-button" type="submit">
+                Envoyer ma demande <svg aria-hidden="true"><use href="#icon-mail"></use></svg>
+              </button>
+              <p>Votre messagerie s’ouvrira avec la demande préremplie. Aucune donnée n’est enregistrée sur ce site.</p>
+            </div>
+          </form>
+
+          <div class="sent-message" id="sent-message" role="status" hidden>
+            <span><svg aria-hidden="true"><use href="#icon-check"></use></svg></span>
+            <div>
+              <strong>Votre demande est prête.</strong>
+              <p>Il vous reste simplement à l’envoyer depuis votre messagerie.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="confirmation-section">
+        <div class="portrait-frame">
+          <img src="assets/sophie-appareil.jpg" alt="Sophie Boiral avec son appareil photo" />
+        </div>
+        <div class="confirmation-copy">
+          <p class="eyebrow">Après validation du créneau</p>
+          <h2>Votre rendez-vous est confirmé</h2>
+          <p>Merci pour votre message et pour l’intérêt porté à mon travail. Je suis heureuse de pouvoir prochainement échanger avec vous.</p>
+          <p class="signoff">À très bientôt, Sophie</p>
+          <a href="https://linktr.ee/sophieboiral" target="_blank" rel="noreferrer">
+            En attendant, découvrir mon univers
+            <svg aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+          </a>
+        </div>
+        <div class="confirmation-art">
+          <img src="assets/oeuvre-encre-noire.JPG" alt="Œuvre originale à l’encre de Chine, architecture et nature" />
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <img src="assets/signature-sophie.png" alt="Sophie Boiral" />
+        <p>Artiste plasticienne · Saint-Ouen-sur-Seine</p>
+      </div>
+      <nav aria-label="Liens de Sophie Boiral">
+        <a href="https://www.instagram.com/sophieboiral_art/" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://linktr.ee/sophieboiral" target="_blank" rel="noreferrer">Découvrir mon univers</a>
+        <a href="mailto:sophie.boiral.art@gmail.com">Me contacter</a>
+      </nav>
+      <svg class="breath-mark compact" viewBox="0 0 420 88" aria-hidden="true">
+        <path d="M8 52c58-28 95-30 142-3 50 29 96 26 142-6 43-30 78-31 120-8" />
+        <path d="M20 62c50-22 90-20 129 2 53 29 100 23 145-8 40-28 73-27 108-7" />
+        <g>
+          <circle cx="28" cy="24" r="2.5" /><circle cx="75" cy="16" r="4" />
+          <circle cx="120" cy="29" r="2" /><circle cx="173" cy="14" r="3" />
+          <circle cx="230" cy="28" r="5" /><circle cx="283" cy="16" r="2.5" />
+          <circle cx="335" cy="28" r="3.5" /><circle cx="389" cy="12" r="2" />
+        </g>
+      </svg>
+    </footer>
+  </body>
+</html>
