@@ -7,7 +7,7 @@ Ce dossier contient le site complet, prêt à être publié gratuitement avec Gi
 - `index.html` : la structure et les textes du site
 - `style.css` : toute la mise en page et l’identité visuelle
 - `script.js` : le choix du rendez-vous et la préparation de l’email
-- les fichiers `.JPG`, `.jpg`, `.png` et `.svg` : la signature, les photographies et le favicon
+- les fichiers `.JPG`, `.jpg` et `.png` : la signature et les photographies
 
 Toutes les œuvres et photographies sont utilisées sans modification de leur contenu. Tous les fichiers sont volontairement placés au même niveau pour faciliter leur import dans GitHub.
 
@@ -43,6 +43,8 @@ const RECIPIENT_EMAIL = "sophie.boiral.art@gmail.com";
 ```
 
 Pour remplacer une image sans toucher au code : gardez exactement le même nom de fichier, puis téléversez la nouvelle image à la place de l’ancienne.
+
+Le site n’utilise volontairement aucun favicon personnalisé.
 
 ## Tester le site avant publication
 

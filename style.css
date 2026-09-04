@@ -38,27 +38,35 @@ img { display: block; max-width: 100%; }
   z-index: 10;
   inset: 0 0 auto;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   padding: 1.35rem clamp(1.25rem, 4vw, 4.5rem);
 }
 .brand {
   display: flex;
-  width: 270px;
-  flex-direction: column;
+  width: min(500px, 62vw);
+  align-items: center;
+  gap: 1.1rem;
   text-decoration: none;
 }
-.brand img, .footer-brand img {
+.brand img {
+  width: min(330px, 42vw);
+  height: auto;
+  object-fit: contain;
+}
+.footer-brand img {
   width: 100%;
   height: auto;
   object-fit: contain;
 }
 .brand span {
-  margin-top: 0.2rem;
-  text-align: center;
+  flex: 0 0 auto;
+  text-align: left;
   font-size: 0.62rem;
-  letter-spacing: 0.24em;
+  line-height: 1.45;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 .top-link {
   display: inline-flex;
@@ -283,13 +291,10 @@ input, textarea {
 textarea { min-height: 116px; resize: vertical; }
 input:focus, textarea:focus { border-color: var(--turquoise); background: white; }
 .submit-row {
-  display: grid;
-  grid-template-columns: minmax(235px, 0.42fr) minmax(0, 0.58fr);
-  align-items: center;
-  gap: 1.25rem;
+  display: block;
   margin-top: 0.5rem;
 }
-.submit-row p { margin: 0; color: var(--muted); font-size: 0.75rem; line-height: 1.55; }
+.submit-row .submit-button { width: min(100%, 340px); }
 .form-error { margin: 0; color: #9d332d; font-size: 0.84rem; }
 .sent-message {
   display: flex;
@@ -395,8 +400,9 @@ footer .breath-mark { margin: 0; color: var(--deep); }
 
 @media (max-width: 720px) {
   .topbar { align-items: center; padding-top: 0.85rem; }
-  .brand { width: 210px; }
-  .brand span { font-size: 0.52rem; }
+  .brand { width: min(360px, 88vw); gap: 0.7rem; }
+  .brand img { width: min(240px, 60vw); }
+  .brand span { font-size: 0.5rem; letter-spacing: 0.14em; }
   .top-link { display: none; }
   .hero-copy { min-height: 690px; padding-top: 8rem; }
   h1 { font-size: clamp(3.25rem, 17vw, 5rem); }
@@ -410,7 +416,7 @@ footer .breath-mark { margin: 0; color: var(--deep); }
   .request-section { grid-template-columns: 1fr; }
   .request-art { min-height: 420px; }
   .request-form-wrap { padding: 4rem 1.25rem; }
-  .field-row, .field-row.three, .submit-row { grid-template-columns: 1fr; }
+  .field-row, .field-row.three { grid-template-columns: 1fr; }
   .confirmation-section { grid-template-columns: 1fr; }
   .portrait-frame { min-height: 420px; }
   .confirmation-copy { min-height: 480px; padding: 3.5rem 1.5rem; }
