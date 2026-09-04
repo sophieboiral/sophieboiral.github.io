@@ -8,6 +8,7 @@
     content="Inscrivez-vous aux nouvelles de l’atelier de Sophie Boiral, artiste plasticienne : créations, expositions, coulisses et œuvres disponibles."
   />
   <meta name="theme-color" content="#f7f5f0" />
+  <meta name="build-version" content="newsletter-v6-official-brevo" />
   <title>Nouvelles de l’atelier | Sophie Boiral</title>
 
   <style>
@@ -507,6 +508,131 @@
       display: none;
     }
 
+
+    /* ---------- BREVO OFFICIAL FORM INTEGRATION ---------- */
+
+    #sib-form-container,
+    #sib-container {
+      width: 100%;
+      max-width: 700px;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      text-align: left;
+    }
+
+    .brevo-message {
+      display: none;
+      max-width: 700px;
+      margin: 0 0 1.35rem;
+      border: 1px solid rgba(102,177,154,.55);
+      background: rgba(102,177,154,.12);
+      padding: 1rem 1.1rem;
+      color: var(--deep);
+      font-size: .84rem;
+      line-height: 1.55;
+    }
+
+    #error-message.brevo-message {
+      border-color: rgba(153,60,60,.35);
+      background: rgba(153,60,60,.07);
+      color: #7b2929;
+    }
+
+    .brevo-message .sib-form-message-panel__text {
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      border: 0;
+    }
+
+    .brevo-message .sib-notification__icon {
+      display: none;
+    }
+
+    #sib-form .sib-form-block {
+      padding: 0;
+    }
+
+    #sib-form .sib-input {
+      padding: 0;
+    }
+
+    #sib-form .entry__field {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    #sib-form .entry__field input {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-bottom: 1px solid #98aaa7;
+      border-radius: 0;
+      outline: none;
+      background: rgba(255,255,255,.56);
+      color: var(--charcoal);
+      padding: .78rem .85rem;
+      font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: .95rem;
+      box-shadow: none;
+    }
+
+    #sib-form .entry__field input:focus {
+      border-color: var(--turquoise);
+      background: white;
+    }
+
+    #sib-form .entry__error {
+      min-height: 0;
+      margin-top: .35rem;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      color: #7b2929;
+      font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: .72rem;
+      line-height: 1.4;
+    }
+
+    #sib-form .input--hidden {
+      display: none !important;
+    }
+
+    #sib-form .sib-form-block__button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 0;
+      background: var(--deep);
+      color: white;
+      cursor: pointer;
+      padding: .9rem 1.4rem;
+      font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      transition: background 180ms ease;
+    }
+
+    #sib-form .sib-form-block__button:hover {
+      background: #0b3f40;
+    }
+
+    #sib-form .sib-form-block__button svg {
+      width: 16px;
+      height: 16px;
+      margin-right: .45rem;
+      fill: currentColor;
+    }
+
     /* ---------- QUOTE / TRANSITION ---------- */
 
     .quote-section {
@@ -701,6 +827,7 @@
       .submit-button { transition: none; }
     }
   </style>
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />
 </head>
 
 <body>
@@ -804,94 +931,145 @@
           Vous recevrez ensuite un e-mail de confirmation avant votre inscription définitive.
         </p>
 
-        <!-- Formulaire connecté à Brevo -->
-        <form
-          class="newsletter-form"
-          id="newsletter-form"
-          method="POST"
-          action="https://2d9a1b01.sibforms.com/serve/MUIFAMLkd1ZLCFa4y3geXz8Pjq7aAcJttXBAJCgdhdyRJZftfBvMo823X59A5_ql_1_ZsEZuRolx9LNBQlEGA7MWRrI7bKePEh2n-r5KdaUN4drBSwQuxs-f0BjaevQXQJabhuG0m2bJcL_-iPCj_Fy83Juls8zJxFkhxcaOsLyBAfMo4ZeLYHlNTQbklaG5leIPHfgePBmCdS5z"
-          data-type="subscription"
-        >
-          <div class="field-row">
-            <label class="field" for="PRENOM">
-              <span>Prénom <em>*</em></span>
-              <input
-                id="PRENOM"
-                name="PRENOM"
-                type="text"
-                autocomplete="given-name"
-                placeholder="Votre prénom"
-                maxlength="200"
-                required
-              />
-            </label>
-
-            <label class="field" for="NOM">
-              <span>Nom <em>*</em></span>
-              <input
-                id="NOM"
-                name="NOM"
-                type="text"
-                autocomplete="family-name"
-                placeholder="Votre nom"
-                maxlength="200"
-                required
-              />
-            </label>
-          </div>
-
-          <label class="field" for="EMAIL">
-            <span>Adresse e-mail <em>*</em></span>
-            <input
-              id="EMAIL"
-              name="EMAIL"
-              type="email"
-              autocomplete="email"
-              placeholder="vous@exemple.fr"
-              required
-            />
-          </label>
-
-          <label class="consent" for="rgpd">
-            <input id="rgpd" name="rgpd" type="checkbox" required />
-            <span>
-              J’accepte de recevoir par e-mail les actualités artistiques de Sophie Boiral.
-              Je pourrai me désinscrire à tout moment grâce au lien présent dans chaque newsletter.
-            </span>
-          </label>
-
-          <input
-            type="text"
-            name="email_address_check"
-            value=""
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-            style="position:absolute;left:-5000px;"
-          />
-          <input type="hidden" name="locale" value="fr" />
-
-          <div class="submit-row">
-            <button class="submit-button" type="submit">
-              Recevoir les nouvelles de l’atelier
-              <svg class="icon" aria-hidden="true">
-                <use href="#icon-arrow-right"></use>
+        <!-- Intégration HTML officielle Brevo, restylée dans la DA Sophie Boiral -->
+        <div id="sib-form-container" class="sib-form-container">
+          <div id="error-message" class="sib-form-message-panel brevo-message">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon" aria-hidden="true">
+                <path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8z"/>
               </svg>
-            </button>
-
-            <span class="frequency">
-              Environ 4 lettres par an.<br />
-              Pas de sollicitations intempestives.
-            </span>
+              <span class="sib-form-message-panel__inner-text">
+                Nous n'avons pas pu confirmer votre inscription. Vérifiez les informations saisies et réessayez.
+              </span>
+            </div>
           </div>
-        </form>
 
-        <p class="form-note">
-          Vos informations sont utilisées uniquement pour l’envoi des actualités de Sophie Boiral.
-          Elles ne sont ni vendues ni transmises à des tiers.
-        </p>
+          <div id="success-message" class="sib-form-message-panel brevo-message">
+            <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+              <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon" aria-hidden="true">
+                <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8z"/>
+              </svg>
+              <span class="sib-form-message-panel__inner-text">
+                Merci. Votre inscription est confirmée.
+              </span>
+            </div>
+          </div>
 
-        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          <div id="sib-container" class="sib-container--large sib-container--vertical">
+            <form
+              id="sib-form"
+              class="newsletter-form"
+              method="POST"
+              action="https://2d9a1b01.sibforms.com/serve/MUIFAMLkd1ZLCFa4y3geXz8Pjq7aAcJttXBAJCgdhdyRJZftfBvMo823X59A5_ql_1_ZsEZuRolx9LNBQlEGA7MWRrI7bKePEh2n-r5KdaUN4drBSwQuxs-f0BjaevQXQJabhuG0m2bJcL_-iPCj_Fy83Juls8zJxFkhxcaOsLyBAfMo4ZeLYHlNTQbklaG5leIPHfgePBmCdS5z"
+              data-type="subscription"
+            >
+              <div class="field-row">
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row">
+                      <label class="field entry__label" for="PRENOM" data-required="*">
+                        <span>Prénom <em>*</em></span>
+                        <span class="entry__field">
+                          <input
+                            class="input"
+                            maxlength="200"
+                            type="text"
+                            id="PRENOM"
+                            name="PRENOM"
+                            autocomplete="given-name"
+                            placeholder="Votre prénom"
+                            data-required="true"
+                            required
+                          />
+                        </span>
+                      </label>
+                    </div>
+                    <label class="entry__error entry__error--primary"></label>
+                  </div>
+                </div>
+
+                <div class="sib-input sib-form-block">
+                  <div class="form__entry entry_block">
+                    <div class="form__label-row">
+                      <label class="field entry__label" for="NOM" data-required="*">
+                        <span>Nom <em>*</em></span>
+                        <span class="entry__field">
+                          <input
+                            class="input"
+                            maxlength="200"
+                            type="text"
+                            id="NOM"
+                            name="NOM"
+                            autocomplete="family-name"
+                            placeholder="Votre nom"
+                            data-required="true"
+                            required
+                          />
+                        </span>
+                      </label>
+                    </div>
+                    <label class="entry__error entry__error--primary"></label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <label class="field entry__label" for="EMAIL" data-required="*">
+                      <span>Adresse e-mail <em>*</em></span>
+                      <span class="entry__field">
+                        <input
+                          class="input"
+                          type="text"
+                          id="EMAIL"
+                          name="EMAIL"
+                          autocomplete="email"
+                          placeholder="vous@exemple.fr"
+                          data-required="true"
+                          required
+                        />
+                      </span>
+                    </label>
+                  </div>
+                  <label class="entry__error entry__error--primary"></label>
+                </div>
+              </div>
+
+              <label class="consent" for="rgpd-local">
+                <input id="rgpd-local" type="checkbox" required />
+                <span>
+                  J’accepte de recevoir par e-mail les actualités artistiques de Sophie Boiral.
+                  Je pourrai me désinscrire à tout moment grâce au lien présent dans chaque newsletter.
+                </span>
+              </label>
+
+              <div class="submit-row">
+                <div class="sib-form-block">
+                  <button
+                    class="sib-form-block__button sib-form-block__button-with-loader"
+                    form="sib-form"
+                    type="submit"
+                  >
+                    <svg class="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512" aria-hidden="true">
+                      <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z"/>
+                    </svg>
+                    Recevoir les nouvelles de l’atelier
+                  </button>
+                </div>
+
+                <span class="frequency">
+                  Environ 4 lettres par an.<br />
+                  Pas de sollicitations intempestives.
+                </span>
+              </div>
+
+              <input type="text" name="email_address_check" value="" class="input--hidden" />
+              <input type="hidden" name="locale" value="fr" />
+            </form>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -943,57 +1121,28 @@
   </footer>
 
   <script>
-    const form = document.querySelector("#newsletter-form");
-    const status = document.querySelector("#form-status");
-    const submitButton = form.querySelector(".submit-button");
-
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
+    window.REQUIRED_CODE_ERROR_MESSAGE = 'Veuillez choisir un code pays';
+    window.LOCALE = 'fr';
+    window.EMAIL_INVALID_MESSAGE = window.SMS_INVALID_MESSAGE =
+      "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+    window.REQUIRED_ERROR_MESSAGE = "Vous devez renseigner ce champ.";
+    window.GENERIC_INVALID_MESSAGE =
+      "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+    window.INVALID_NUMBER =
+      "Les informations que vous avez fournies ne sont pas valides. Veuillez vérifier le format du champ et réessayer.";
+    window.INVALID_DATE = "Veuillez saisir une date valide";
+    window.REQUIRED_MULTISELECT_MESSAGE = "Veuillez choisir au moins une option";
+    window.translation = {
+      common: {
+        selectedList: "{quantity} liste sélectionnée",
+        selectedLists: "{quantity} listes sélectionnées",
+        selectedOption: "{quantity} sélectionné",
+        selectedOptions: "{quantity} sélectionnés"
       }
-
-      const initialButtonHtml = submitButton.innerHTML;
-      submitButton.disabled = true;
-      submitButton.setAttribute("aria-busy", "true");
-      submitButton.textContent = "Inscription en cours…";
-
-      status.className = "form-status";
-      status.textContent = "";
-
-      try {
-        const data = new FormData(form);
-
-        /*
-          Envoi silencieux vers Brevo :
-          - empêche le navigateur d'ouvrir la page technique {"success":true}
-          - conserve l'inscription dans Brevo
-          - reste compatible avec GitHub Pages, sans clé API exposée
-        */
-        await fetch(form.action, {
-          method: "POST",
-          body: data,
-          mode: "no-cors"
-        });
-
-        form.classList.add("is-sent");
-        status.className = "form-status visible";
-        status.innerHTML =
-          "<strong>Merci pour votre inscription.</strong><br>" +
-          "Votre demande a bien été envoyée. Si la double confirmation est activée dans Brevo, " +
-          "pensez à consulter votre boîte mail pour confirmer votre inscription.";
-      } catch (error) {
-        status.className = "form-status visible error";
-        status.innerHTML =
-          "<strong>Une erreur est survenue.</strong><br>" +
-          "Veuillez réessayer dans quelques instants.";
-        submitButton.disabled = false;
-        submitButton.removeAttribute("aria-busy");
-        submitButton.innerHTML = initialButtonHtml;
-      }
-    });
+    };
+    var AUTOHIDE = Boolean(0);
   </script>
+  <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
+
 </body>
 </html>
