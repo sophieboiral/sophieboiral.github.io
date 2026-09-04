@@ -489,13 +489,23 @@
       margin-top: 1.3rem;
       border: 1px solid rgba(102,177,154,.55);
       background: rgba(102,177,154,.12);
-      padding: 1rem;
+      padding: 1.15rem 1.2rem;
       color: var(--deep);
       font-size: .86rem;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .form-status.visible { display: block; }
+
+    .form-status.error {
+      border-color: rgba(153, 60, 60, .35);
+      background: rgba(153, 60, 60, .07);
+      color: #7b2929;
+    }
+
+    .newsletter-form.is-sent {
+      display: none;
+    }
 
     /* ---------- QUOTE / TRANSITION ---------- */
 
@@ -934,11 +944,54 @@
 
   <script>
     const form = document.querySelector("#newsletter-form");
+    const status = document.querySelector("#form-status");
+    const submitButton = form.querySelector(".submit-button");
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
       if (!form.checkValidity()) {
-        event.preventDefault();
         form.reportValidity();
+        return;
+      }
+
+      const initialButtonHtml = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.setAttribute("aria-busy", "true");
+      submitButton.textContent = "Inscription en cours…";
+
+      status.className = "form-status";
+      status.textContent = "";
+
+      try {
+        const data = new FormData(form);
+
+        /*
+          Envoi silencieux vers Brevo :
+          - empêche le navigateur d'ouvrir la page technique {"success":true}
+          - conserve l'inscription dans Brevo
+          - reste compatible avec GitHub Pages, sans clé API exposée
+        */
+        await fetch(form.action, {
+          method: "POST",
+          body: data,
+          mode: "no-cors"
+        });
+
+        form.classList.add("is-sent");
+        status.className = "form-status visible";
+        status.innerHTML =
+          "<strong>Merci pour votre inscription.</strong><br>" +
+          "Votre demande a bien été envoyée. Si la double confirmation est activée dans Brevo, " +
+          "pensez à consulter votre boîte mail pour confirmer votre inscription.";
+      } catch (error) {
+        status.className = "form-status visible error";
+        status.innerHTML =
+          "<strong>Une erreur est survenue.</strong><br>" +
+          "Veuillez réessayer dans quelques instants.";
+        submitButton.disabled = false;
+        submitButton.removeAttribute("aria-busy");
+        submitButton.innerHTML = initialButtonHtml;
       }
     });
   </script>
