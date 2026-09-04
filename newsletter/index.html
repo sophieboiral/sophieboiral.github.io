@@ -1,1 +1,946 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Inscrivez-vous aux nouvelles de l’atelier de Sophie Boiral, artiste plasticienne : créations, expositions, coulisses et œuvres disponibles."
+  />
+  <meta name="theme-color" content="#f7f5f0" />
+  <title>Nouvelles de l’atelier | Sophie Boiral</title>
 
+  <style>
+    :root {
+      --ivory: #f7f5f0;
+      --paper: #fffefb;
+      --charcoal: #111111;
+      --deep: #0f4d4e;
+      --turquoise: #1fa7b1;
+      --water: #66b19a;
+      --line: rgba(15, 77, 78, 0.20);
+      --muted: #667271;
+      --soft-deep: rgba(15, 77, 78, 0.07);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-family: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input { font: inherit; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .svg-sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .icon {
+      width: 1.05rem;
+      height: 1.05rem;
+      flex: 0 0 auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+
+    .signature-logo {
+      display: block;
+      width: clamp(185px, 18vw, 285px);
+      height: auto;
+      object-fit: contain;
+    }
+
+    .header-signature {
+      width: clamp(180px, 16vw, 260px);
+    }
+
+    .footer-signature {
+      width: min(290px, 82vw);
+      margin: 0 auto 0 0;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    .topbar {
+      position: absolute;
+      z-index: 10;
+      inset: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 1.35rem clamp(1.25rem, 4vw, 4.5rem);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: flex-end;
+      gap: .85rem;
+    }
+
+    .brand-main {
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(1.3rem, 2vw, 1.9rem);
+      line-height: .95;
+      letter-spacing: -0.035em;
+      white-space: nowrap;
+    }
+
+    .brand-poesie {
+      margin-top: .28rem;
+      color: var(--deep);
+      font-size: .55rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .brand-role {
+      padding-bottom: .08rem;
+      color: var(--muted);
+      font-size: .57rem;
+      line-height: 1.3;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .top-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      border-bottom: 1px solid currentColor;
+      padding: .5rem 0 .35rem;
+      color: var(--deep);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      min-height: 790px;
+      display: grid;
+      grid-template-columns: minmax(0, .93fr) minmax(0, 1.07fr);
+      background: var(--ivory);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding:
+        9rem
+        clamp(1.5rem, 6vw, 7rem)
+        5rem
+        clamp(1.5rem, 7vw, 8rem);
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--deep);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3.6rem, 6vw, 7.25rem);
+      line-height: .93;
+      letter-spacing: -.048em;
+    }
+
+    .intro {
+      max-width: 610px;
+      margin: 2.2rem 0 0;
+      color: #293535;
+      font-size: 1.06rem;
+      line-height: 1.78;
+    }
+
+    .intro.secondary {
+      margin-top: .65rem;
+      color: var(--muted);
+    }
+
+    .brand-phrase {
+      width: min(440px, 100%);
+      margin-top: 2.1rem;
+      color: var(--deep);
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: 1.03rem;
+      font-style: italic;
+    }
+
+    .hero-photo {
+      position: relative;
+      min-height: 790px;
+      overflow: hidden;
+      background: #dfe9e7;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 45%;
+    }
+
+    .hero-photo::after {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(247,245,240,.08), transparent 20%),
+        linear-gradient(180deg, transparent 70%, rgba(15,77,78,.12));
+      content: "";
+      pointer-events: none;
+    }
+
+    .photo-caption {
+      position: absolute;
+      z-index: 2;
+      right: 1rem;
+      bottom: 1rem;
+      padding: .55rem .75rem;
+      background: rgba(247,245,240,.90);
+      color: var(--deep);
+      font-size: .60rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    /* ---------- NEWSLETTER SECTION ---------- */
+
+    .newsletter-section {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+      border-top: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .newsletter-intro {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 690px;
+      overflow: hidden;
+      padding:
+        clamp(4rem, 7vw, 7rem)
+        clamp(1.5rem, 6vw, 7rem);
+      background: var(--deep);
+      color: white;
+    }
+
+    .newsletter-intro::before,
+    .newsletter-intro::after {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .newsletter-intro::before {
+      width: 390px;
+      height: 390px;
+      right: -170px;
+      top: -110px;
+    }
+
+    .newsletter-intro::after {
+      width: 270px;
+      height: 270px;
+      left: -160px;
+      bottom: -70px;
+    }
+
+    .newsletter-intro .eyebrow {
+      position: relative;
+      z-index: 1;
+      color: #aee6db;
+    }
+
+    .newsletter-intro h2 {
+      position: relative;
+      z-index: 1;
+      max-width: 570px;
+      margin: 0;
+      font-size: clamp(2.7rem, 5vw, 5rem);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .newsletter-intro p {
+      position: relative;
+      z-index: 1;
+      max-width: 590px;
+      margin: 1.4rem 0 0;
+      color: rgba(255,255,255,.78);
+      line-height: 1.78;
+    }
+
+    .newsletter-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: .9rem;
+      margin: 2rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .newsletter-list li {
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+      color: rgba(255,255,255,.90);
+      font-size: .90rem;
+      line-height: 1.55;
+    }
+
+    .newsletter-list .number {
+      min-width: 2rem;
+      color: #aee6db;
+      font-family: Didot, "Bodoni 72", Georgia, serif;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .form-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 690px;
+      padding:
+        clamp(4rem, 8vw, 8rem)
+        clamp(1.5rem, 7vw, 8rem);
+      background: var(--ivory);
+    }
+
+    .form-wrap h2 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(2.6rem, 4.7vw, 4.8rem);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+    }
+
+    .form-lead {
+      max-width: 640px;
+      margin: 1.15rem 0 2.5rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 700px;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    label.field {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      color: #253334;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    label.field > span > em {
+      color: var(--turquoise);
+      font-style: normal;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-bottom: 1px solid #98aaa7;
+      border-radius: 0;
+      outline: none;
+      background: rgba(255,255,255,.56);
+      color: var(--charcoal);
+      padding: .78rem .85rem;
+      font-size: .95rem;
+      letter-spacing: 0;
+      text-transform: none;
+      transition:
+        border-color 150ms ease,
+        background 150ms ease;
+    }
+
+    input:focus {
+      border-color: var(--turquoise);
+      background: white;
+    }
+
+    .consent {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: .75rem;
+      align-items: start;
+      color: var(--muted);
+      font-size: .77rem;
+      line-height: 1.55;
+      cursor: pointer;
+    }
+
+    .consent input {
+      width: 17px;
+      height: 17px;
+      margin: .12rem 0 0;
+      accent-color: var(--deep);
+    }
+
+    .submit-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: .25rem;
+    }
+
+    .submit-button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      border: 0;
+      background: var(--deep);
+      color: white;
+      cursor: pointer;
+      padding: .9rem 1.4rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      transition:
+        background 180ms ease,
+        transform 180ms ease;
+    }
+
+    .submit-button:hover { background: #0b3f40; }
+    .submit-button:active { transform: translateY(1px); }
+
+    .frequency {
+      color: var(--muted);
+      font-size: .74rem;
+      line-height: 1.5;
+    }
+
+    .form-note {
+      max-width: 700px;
+      margin: 1.1rem 0 0;
+      color: var(--muted);
+      font-size: .72rem;
+      line-height: 1.55;
+    }
+
+    .form-status {
+      display: none;
+      max-width: 700px;
+      margin-top: 1.3rem;
+      border: 1px solid rgba(102,177,154,.55);
+      background: rgba(102,177,154,.12);
+      padding: 1rem;
+      color: var(--deep);
+      font-size: .86rem;
+      line-height: 1.55;
+    }
+
+    .form-status.visible { display: block; }
+
+    /* ---------- QUOTE / TRANSITION ---------- */
+
+    .quote-section {
+      display: grid;
+      place-items: center;
+      min-height: 380px;
+      padding: 4.5rem 1.5rem;
+      background: var(--paper);
+      text-align: center;
+    }
+
+    .quote-inner {
+      width: min(840px, 100%);
+    }
+
+    .quote-inner .eyebrow { margin-bottom: 1.2rem; }
+
+    .quote-inner blockquote {
+      margin: 0;
+      color: var(--deep);
+      font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 5vw, 5rem);
+      font-style: italic;
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+
+    .quote-inner .breath-mark {
+      width: min(420px, 80%);
+      margin: 1.2rem auto 0;
+      color: var(--deep);
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      display: grid;
+      grid-template-columns: minmax(230px, 320px) 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      min-height: 210px;
+      padding: 3rem clamp(1.5rem, 6vw, 7rem);
+      border-top: 1px solid var(--line);
+      background: var(--ivory);
+    }
+
+    .footer-brand .brand-main {
+      font-size: 1.7rem;
+    }
+
+    .footer-brand .brand-poesie {
+      font-size: .52rem;
+    }
+
+    .footer-brand p {
+      margin: .65rem 0 0;
+      color: var(--muted);
+      font-size: .70rem;
+      line-height: 1.6;
+      letter-spacing: .06em;
+    }
+
+    footer nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 1rem 2rem;
+    }
+
+    footer nav a {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: .25rem;
+      color: var(--deep);
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        min-height: 690px;
+      }
+
+      .hero-photo {
+        min-height: 690px;
+      }
+
+      .newsletter-section {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-intro,
+      .form-wrap {
+        min-height: auto;
+      }
+
+      footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      footer nav {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        padding-top: .9rem;
+      }
+
+      .brand-lockup {
+        gap: .55rem;
+      }
+
+      .header-signature {
+        width: 175px;
+      }
+
+      .brand-main {
+        font-size: 1.18rem;
+      }
+
+      .brand-poesie {
+        font-size: .46rem;
+      }
+
+      .brand-role {
+        font-size: .46rem;
+        letter-spacing: .11em;
+      }
+
+      .top-link {
+        display: none;
+      }
+
+      .hero-copy {
+        min-height: 670px;
+        padding-top: 7.5rem;
+      }
+
+      h1 {
+        font-size: clamp(3.25rem, 17vw, 5.2rem);
+      }
+
+      .intro {
+        font-size: 1rem;
+      }
+
+      .hero-photo {
+        min-height: 560px;
+      }
+
+      .hero-photo img {
+        object-position: 50% 42%;
+      }
+
+      .newsletter-intro,
+      .form-wrap {
+        padding: 4.2rem 1.3rem;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+
+      .submit-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .submit-button {
+        width: 100%;
+      }
+
+      footer nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .submit-button { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="icon-arrow-down" viewBox="0 0 24 24">
+      <path d="M12 5v14M19 12l-7 7-7-7" />
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </symbol>
+  </svg>
+
+  <header class="topbar">
+    <a href="#accueil" class="brand" aria-label="Sophie Boiral — accueil">
+      <div class="brand-lockup">
+        <img
+          class="signature-logo header-signature"
+          src="assets/signature-sophie.png"
+          alt="Sophie Boiral — Art & POésie"
+        />
+        <div class="brand-role">Artiste plasticienne</div>
+      </div>
+    </a>
+
+    <a class="top-link" href="#inscription">
+      S’inscrire à la newsletter
+      <svg class="icon" aria-hidden="true">
+        <use href="#icon-arrow-down"></use>
+      </svg>
+    </a>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-copy">
+        <p class="eyebrow">Sophie Boiral · Nouvelles de l’atelier</p>
+
+        <h1>Entrez dans<br />mes paysages</h1>
+
+        <p class="intro">
+          Je peins des paysages traversés par le souffle, la lumière
+          et le mouvement du vivant.
+        </p>
+
+        <p class="intro secondary">
+          Tous les trois mois, je vous invite à entrer un peu plus dans mon univers :
+          nouvelles créations, expositions, recherches en cours et œuvres disponibles.
+        </p>
+
+        <div class="brand-phrase">
+          <span>Le souffle révèle des mondes invisibles</span>
+        </div>
+      </div>
+
+      <figure class="hero-photo">
+        <img
+          src="assets/sophie-atelier.jpg"
+          alt="Sophie Boiral dans son atelier, les doigts marqués d’encre bleue"
+        />
+        <figcaption class="photo-caption">Dans l’atelier · Sophie Boiral</figcaption>
+      </figure>
+    </section>
+
+    <section class="newsletter-section" id="inscription">
+      <div class="newsletter-intro">
+        <p class="eyebrow">Une correspondance trimestrielle</p>
+
+        <h2>Les nouvelles<br />de l’atelier</h2>
+
+        <p>
+          Quatre fois par an environ, je partage quelques fragments de mon travail
+          et de ce qui se construit à l’atelier, au rythme des saisons et des projets.
+        </p>
+
+        <ul class="newsletter-list">
+          <li>
+            <span class="number">01</span>
+            <span>Nouvelles œuvres, séries et collections</span>
+          </li>
+          <li>
+            <span class="number">02</span>
+            <span>Expositions, rencontres et prochains rendez-vous</span>
+          </li>
+          <li>
+            <span class="number">03</span>
+            <span>Coulisses, recherches, matières et processus de création</span>
+          </li>
+          <li>
+            <span class="number">04</span>
+            <span>Une sélection d’œuvres disponibles</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="form-wrap">
+        <p class="eyebrow">Recevoir la newsletter</p>
+        <h2>Restons en lien</h2>
+
+        <p class="form-lead">
+          Laissez simplement votre prénom et votre adresse e-mail.
+          Vous recevrez ensuite un e-mail de confirmation avant votre inscription définitive.
+        </p>
+
+        <!-- Formulaire connecté à Brevo -->
+        <form
+          class="newsletter-form"
+          id="newsletter-form"
+          method="POST"
+          action="https://2d9a1b01.sibforms.com/serve/MUIFAMLkd1ZLCFa4y3geXz8Pjq7aAcJttXBAJCgdhdyRJZftfBvMo823X59A5_ql_1_ZsEZuRolx9LNBQlEGA7MWRrI7bKePEh2n-r5KdaUN4drBSwQuxs-f0BjaevQXQJabhuG0m2bJcL_-iPCj_Fy83Juls8zJxFkhxcaOsLyBAfMo4ZeLYHlNTQbklaG5leIPHfgePBmCdS5z"
+          data-type="subscription"
+        >
+          <div class="field-row">
+            <label class="field" for="PRENOM">
+              <span>Prénom <em>*</em></span>
+              <input
+                id="PRENOM"
+                name="PRENOM"
+                type="text"
+                autocomplete="given-name"
+                placeholder="Votre prénom"
+                maxlength="200"
+                required
+              />
+            </label>
+
+            <label class="field" for="NOM">
+              <span>Nom <em>*</em></span>
+              <input
+                id="NOM"
+                name="NOM"
+                type="text"
+                autocomplete="family-name"
+                placeholder="Votre nom"
+                maxlength="200"
+                required
+              />
+            </label>
+          </div>
+
+          <label class="field" for="EMAIL">
+            <span>Adresse e-mail <em>*</em></span>
+            <input
+              id="EMAIL"
+              name="EMAIL"
+              type="email"
+              autocomplete="email"
+              placeholder="vous@exemple.fr"
+              required
+            />
+          </label>
+
+          <label class="consent" for="rgpd">
+            <input id="rgpd" name="rgpd" type="checkbox" required />
+            <span>
+              J’accepte de recevoir par e-mail les actualités artistiques de Sophie Boiral.
+              Je pourrai me désinscrire à tout moment grâce au lien présent dans chaque newsletter.
+            </span>
+          </label>
+
+          <input
+            type="text"
+            name="email_address_check"
+            value=""
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            style="position:absolute;left:-5000px;"
+          />
+          <input type="hidden" name="locale" value="fr" />
+
+          <div class="submit-row">
+            <button class="submit-button" type="submit">
+              Recevoir les nouvelles de l’atelier
+              <svg class="icon" aria-hidden="true">
+                <use href="#icon-arrow-right"></use>
+              </svg>
+            </button>
+
+            <span class="frequency">
+              Environ 4 lettres par an.<br />
+              Pas de sollicitations intempestives.
+            </span>
+          </div>
+        </form>
+
+        <p class="form-note">
+          Vos informations sont utilisées uniquement pour l’envoi des actualités de Sophie Boiral.
+          Elles ne sont ni vendues ni transmises à des tiers.
+        </p>
+
+        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <div class="quote-inner">
+        <p class="eyebrow">Sophie Boiral · Art &amp; POésie</p>
+
+        <blockquote>
+          « Le souffle révèle<br />des mondes invisibles »
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img
+        class="signature-logo footer-signature"
+        src="assets/signature-sophie.png"
+        alt="Sophie Boiral — Art & POésie"
+      />
+      <p>
+        Artiste plasticienne<br />
+        Saint-Ouen-sur-Seine
+      </p>
+    </div>
+
+    <nav aria-label="Liens">
+      <a
+        href="https://www.instagram.com/sophieboiral_art/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Instagram
+      </a>
+
+      <a
+        href="https://linktr.ee/sophieboiral"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Découvrir mon univers
+      </a>
+
+      <a href="https://sophieboiral.github.io/">
+        Prendre rendez-vous
+      </a>
+    </nav>
+  </footer>
+
+  <script>
+    const form = document.querySelector("#newsletter-form");
+
+    form.addEventListener("submit", function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        form.reportValidity();
+      }
+    });
+  </script>
+</body>
+</html>
