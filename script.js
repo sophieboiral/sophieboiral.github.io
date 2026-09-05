@@ -39,7 +39,7 @@ document.querySelectorAll(".choose-button").forEach((button) => {
     number.textContent = selectedAppointment.number;
     title.textContent = selectedAppointment.title;
     sentMessage.hidden = true;
-    document.querySelector("#demande").scrollIntoView({ behavior: "smooth", block: "start" });
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
